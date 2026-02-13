@@ -4,7 +4,7 @@ use std::ffi::{OsStr, OsString};
 use std::fs::File;
 use std::io::{self, Read, Seek, SeekFrom, Write};
 use std::path::{Path, PathBuf};
-use tempfile::{env, tempdir, Builder, NamedTempFile, TempPath};
+use tempfile::{Builder, NamedTempFile, TempPath, env, tempdir};
 
 fn exists<P: AsRef<Path>>(path: P) -> bool {
     std::fs::metadata(path.as_ref()).is_ok()
@@ -565,7 +565,7 @@ fn test_reseed() {
     let mut files: Vec<_> = Vec::new();
     let _ = Builder::new().make(|path| -> io::Result<File> {
         if attempts == 5 {
-            return Err(io::Error::new(io::ErrorKind::Other, "stop!"));
+            return Err(io::Error::other("stop!"));
         }
         attempts += 1;
         let f = File::options()

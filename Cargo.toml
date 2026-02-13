@@ -8,8 +8,8 @@ authors = [
   "Jason White <me@jasonwhite.io>",
 ]
 documentation = "https://docs.rs/tempfile"
-edition = "2021"
-rust-version = "1.63"
+edition = "2024"
+rust-version = "1.93.0"
 homepage = "https://stebalien.com/projects/tempfile-rs/"
 keywords = ["tempfile", "tmpfile", "filesystem"]
 license = "MIT OR Apache-2.0"
@@ -19,12 +19,10 @@ description = "A library for managing temporary files and directories."
 include = ["CHANGELOG.md", "Cargo.toml", "LICENSE-*", "README.md", "src/**/*.rs", "tests/**/*.rs"]
 
 [dependencies]
-fastrand = "2.1.1"
-# Not available in stdlib until 1.70, but we support 1.63 to support Debian stable.
-once_cell = { version = "1.19.0", default-features = false, features = ["std"] }
+fastrand = "2.3.0"
 
 [target.'cfg(any(unix, windows, target_os = "wasi"))'.dependencies]
-getrandom = { version = ">=0.3.0, <0.5", default-features = false, optional = true }
+getrandom = { path = "../getrandom", default-features = false, optional = true }
 
 [target.'cfg(any(unix, target_os = "wasi"))'.dependencies]
 rustix = { version = "1.1.3", features = ["fs"] }

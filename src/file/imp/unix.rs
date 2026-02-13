@@ -109,7 +109,7 @@ pub fn persist(old_path: &Path, new_path: &Path, overwrite: bool) -> io::Result<
             target_os = "watchos",
         ))]
         {
-            use rustix::fs::{renameat_with, RenameFlags, CWD};
+            use rustix::fs::{CWD, RenameFlags, renameat_with};
             use rustix::io::Errno;
             use std::sync::atomic::{AtomicBool, Ordering::Relaxed};
 

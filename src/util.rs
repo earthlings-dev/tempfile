@@ -57,10 +57,10 @@ pub fn create_helper<R>(
             feature = "getrandom",
             any(windows, unix, target_os = "redox", target_os = "wasi")
         ))]
-        if i == 3 {
-            if let Ok(seed) = getrandom::u64() {
-                rng.seed(seed);
-            }
+        if i == 3
+            && let Ok(seed) = getrandom::u64()
+        {
+            rng.seed(seed);
         }
         let _ = i; // avoid unused variable warning for the above.
 
