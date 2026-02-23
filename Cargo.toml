@@ -22,7 +22,7 @@ include = ["CHANGELOG.md", "Cargo.toml", "LICENSE-*", "README.md", "src/**/*.rs"
 fastrand = "2.3.0"
 
 [target.'cfg(any(unix, windows, target_os = "wasi"))'.dependencies]
-getrandom = { git = "https://github.com/earthlings-dev/getrandom.git", default-features = false, optional = true }
+getrandom = { version = "0.4", default-features = false, optional = true }
 
 [target.'cfg(any(unix, target_os = "wasi"))'.dependencies]
 rustix = { version = "1.1.3", features = ["fs"] }
@@ -43,3 +43,6 @@ nightly = [] # DEPRECATED
 
 [package.metadata.docs.rs]
 rustdoc-args = ["--generate-link-to-definition"]
+
+[patch.crates-io]
+getrandom = { path = "../getrandom" }
